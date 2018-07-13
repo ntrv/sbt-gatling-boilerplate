@@ -1,0 +1,9 @@
+### https://raw.github.com/github/gitignore/5f15ed83c7a3d5db29845edae5205ca2d795c3d8/Scala.gitignore
+
+*.class
+*.log
+
+
+target/
+project/project/
+project/target/

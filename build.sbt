@@ -8,10 +8,20 @@ scalaVersion := "2.12.6"
 
 scalacOptions := Seq(
   "-encoding", "UTF-8", "-target:jvm-1.8", "-deprecation",
-  "-feature", "-unchecked", "-language:implicitConversions", "-language:postfixOps")
+  "-feature", "-unchecked", "-language:implicitConversions", "-language:postfixOps"
+)
 
-javaOptions in Gatling := overrideDefaultJavaOptions("-server", "-Xms1024m", "-Xmx2048m",
-  "-XX:NewRatio=1", "-XX:MetaspaceSize=512M", "-XX:MaxMetaspaceSize=512M")
+javaOptions in Gatling := overrideDefaultJavaOptions(
+  "-server", "-Xms1024m", "-Xmx2048m",
+  "-XX:NewRatio=1", "-XX:MetaspaceSize=512M", "-XX:MaxMetaspaceSize=512M",
+  "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=30", "-XX:G1HeapRegionSize=16m",
+  "-XX:InitiatingHeapOccupancyPercent=75", "-XX:+ParallelRefProcEnabled",
+  "-XX:+PerfDisableSharedMem", "-XX:+AggressiveOpts", "-XX:+OptimizeStringConcat",
+  "-XX:+HeapDumpOnOutOfMemoryError",
+  "-XX:+UseStringDeduplication", "-XX:+OptimizeStringConcat",
+  "-Djava.net.preferIPv4Stack=true", "-Djava.net.preferIPv6Addresses=false",
+  "-XX:G1HeapRegionSize=8M"
+)
 
 enablePlugins(GatlingPlugin)
 

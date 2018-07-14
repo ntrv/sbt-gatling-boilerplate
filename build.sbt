@@ -15,13 +15,15 @@ javaOptions in Gatling := overrideDefaultJavaOptions("-server", "-Xms1024m", "-X
 
 enablePlugins(GatlingPlugin)
 
+crossPaths := false
+logLevel := Level.Warn
+
+libraryDependencies ++= Seq(
+  "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.3.0" % "test",
+  "io.gatling"            % "gatling-test-framework"    % "2.3.0" % "test"
+)
+
 packageOptions in (Compile, packageBin) +=
   Package.ManifestAttributes("Main-Class" -> "org.sample.test")
 
-libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.3.0" % "test"
-libraryDependencies += "io.gatling"            % "gatling-test-framework"    % "2.3.0" % "test"
-
 mainClass in Compile := Some("org.sample.Test")
-
-crossPaths := false
-logLevel := Level.Warn

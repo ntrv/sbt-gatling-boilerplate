@@ -24,3 +24,4 @@ libraryDependencies += "io.gatling"            % "gatling-test-framework"    % "
 mainClass in Compile := Some("org.sample.Test")
 
 crossPaths := false
+logLevel := Level.Warn
